@@ -1,0 +1,88 @@
+import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+void main() => runApp(MaterialApp(
+      home: MainScreen(),
+    ));
+
+class MainScreen extends StatelessWidget {
+  final List<int> numbers = [1, 2, 3, 5, 8, 13, 21, 34, 55];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: Icon(
+          Icons.menu,
+          color: Colors.black,
+        ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
+          )
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+            child: Container(
+              color: Colors.white, // or any color that matches your background
+              child: TextField(
+                decoration: new InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(
+                      MdiIcons.mapMarker,
+                      color: Colors.black,
+                    ),
+                    focusedBorder: InputBorder.none,
+                    hintText: 'E.g New York, United States'),
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 16.0),
+            height: MediaQuery.of(context).size.height * 0.35,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: numbers.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        elevation: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(
+                                      "https://brightcove04pmdo-a.akamaihd.net/5104226627001/5104226627001_5749702030001_5748662679001-vs.jpg?pubId=5104226627001&videoId=5748662679001",
+                                    ))),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+          ),
+        ],
+      ),
+    );
+  }
+}
